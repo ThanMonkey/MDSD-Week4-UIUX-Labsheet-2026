@@ -229,8 +229,9 @@ Prompt ที่ไม่ดี:
 **ขั้นตอนที่ 1.3: Export เป็น Flutter Code**
 1. คลิก **"Export"** ที่มุมขวาบน (ไอคอน สี่เหลี่ยม มีเครื่องหมาย + ตรงกลาง)
 2. เลือก **"Flutter"**
-3. จะได้ไฟล์ `color_schemes.g.dart` ที่มี `ColorScheme` สำหรับ Light และ Dark
-4. บันทึกไฟล์ไว้ (จะนำไปใช้จริงใน `lib/color_schemes.g.dart` ของการทดลองที่ 3 — ให้ใช้ชื่อไฟล์นี้ตลอดทั้งใบงาน เพื่อไม่ให้สับสน)
+3. จะได้ไฟล์ `lib/theme.dart` ที่มี `ColorScheme` สำหรับ Light และ Dark
+   **การจัดการ Theme สามารถทำได้บน Figma เช่นกัน โดย กดปุ่ม Ctrl + P แล้วค้นหา Plugins ชื่อ Material Theme Builder แล้วทำการกำหนดค่าสีของ Theme ตามต้องการ**
+
 
 **ขั้นตอนที่ 1.4: บันทึกผล**
 
@@ -253,7 +254,7 @@ Prompt ที่ไม่ดี:
 คู่สีใช้งาน: Primary คู่กับ On Primary และ Primary Container คู่กับ On Primary Container
 ---
 
-### การทดลองที่ 2: ออกแบบ UI Mockup ด้วย Figma (55 นาที)
+### การทดลองที่ 2: ออกแบบ UI Mockup ด้วย Figma
 
 #### วัตถุประสงค์
 สร้าง Mockup ของ Mobile App อย่างน้อย 3 หน้าด้วย Material Design 3
@@ -268,121 +269,132 @@ Prompt ที่ไม่ดี:
 
 **ขั้นตอนที่ 2.2: Import Material Design 3 Kit**
 
-> **หมายเหตุ:** วิธีเดิม (`Ctrl+P` เปิด Quick Actions แล้วพิมพ์ "Community") ใช้ไม่ได้แล้วใน Figma Web เวอร์ชันปัจจุบัน ให้ใช้ขั้นตอนด้านล่างแทน
 
-1. เปิด Browser ไปที่ https://www.figma.com/community
-2. ค้นหา **"Material 3 Design Kit"**
-3. เลือก Design Kit ที่เผยแพร่โดย **Google**
-4. กด **"Duplicate"** เพื่อ copy เข้า workspace ของคุณ (ถ้าอาจารย์แจกไฟล์ `.fig` มาให้ ให้ Import ไฟล์ Material Design 3 Design Kit ที่อาจารย์เตรียมไว้แทน — ง่ายและเร็วกว่า)
-5. กลับมาที่ไฟล์ของคุณ และเปิด **Assets Panel** (ด้านซ้าย, icon กล่อง)
-6. คลิก **"Team Library"** icon → Enable Material 3 Kit
+1. เลือกเมนู Assets ที่อยู่ด้านซ้าย
+2. เลือก Material 3 Design Kit
 
 **ขั้นตอนที่ 2.3: สร้าง Frame สำหรับ Mobile**
 1. กด `F` (Frame tool)
-2. ด้านขวามือ สร้าง Mobile Frame ความกว้างประมาณ 360 dp ความสูงประมาณ 800 dp (ไม่ต้องยึดชื่อ Preset เพราะ Figma เปลี่ยนชื่อ/ค่า Preset อยู่เรื่อย ๆ ให้พิมพ์ตัวเลข W/H เองในแผง Properties ด้านขวา)
-3. สร้าง Frame 3 ชุด ตั้งชื่อ:
+2. ด้านขวามือ สร้าง Mobile Frame  ความกว้างประมาณ 360 dp ความสูงประมาณ 800 dp  (ไม่ต้องยึดชื่อ Preset เพราะ Figma เปลี่ยนชื่อ/ค่า Preset อยู่เรื่อย ๆ ให้พิมพ์ตัวเลข W/H เองในแผง Properties ด้านขวา)
+3. สร้าง Frame 3 ชุด (ใช้การ Copy & Paste ได้)ตั้งชื่อ:
    - `Home Screen`
    - `Detail Screen`
    - `Profile Screen`
-4. จัดเรียง Frame ให้ชิดกัน ห่างกัน 40 dp
+4. จัดเรียง Frame ให้ชิดกัน
 
-**ขั้นตอนที่ 2.3b: ลอง Inspect Panel — ดูว่า Design เชื่อมกับ Code อย่างไร**
 
-ก่อนเริ่มออกแบบจริง ให้ลองคลิกเลือก Component ใดก็ได้ที่ลากมาจาก Material 3 Kit (เช่น Button หรือ Card ตัวอย่าง) แล้วเปิดแผง **"Inspect"** (มุมขวาบน ถัดจาก Design/Prototype tab) สังเกต:
-- แท็บ **Code** → ดู CSS ที่ Figma generate ให้ (สังเกตค่า padding, border-radius, สี ที่ตรงกับ Design Token)
-- ถ้ามีปลั๊กอินหรือแท็บ Android/iOS → ดูว่าเขาแปลงค่าพวกนี้เป็นหน่วย dp/pt อย่างไร
-
-เป้าหมายคือให้เห็นว่าตัวเลขที่ออกแบบใน Figma (padding, spacing, สี) ไม่ได้ลอย ๆ แต่แปลงตรงไปเป็นค่าที่ใช้เขียน Flutter widget ได้จริงในการทดลองที่ 3
 
 #### ขั้นตอนออกแบบหน้าหลัก (Home Screen)
 
 **ขั้นตอนที่ 2.4: ออกแบบ App Bar**
 1. คลิกที่ Frame `Home Screen`
-2. ไปที่ Assets → ค้นหา **"Top App Bar"**
-3. ลาก Component `Center-aligned Top App Bar` ลงบน Frame
+2. เลื่อก Assets → Material 3 Design Kit -> **App bar**
+3. ลาก Component ลงบน Frame 
 4. วางที่ด้านบนสุด (y = 0)
 5. ปรับ width ให้เต็ม Frame (360 dp)
-6. Double-click เพื่อแก้ไขชื่อ: เปลี่ยนเป็นชื่อ App ของคุณ
+6. Double-click เพื่อแก้ไขชื่อ: **"Green Market by (ชื่อนักศึกษา)"
 
-**ขั้นตอนที่ 2.5: ออกแบบ Content Area**
+**ขั้นตอนที่ 2.5: ออกแบบ Content Area (รายการสินค้าผักผลไม้)**
+1. **สร้าง Card สำหรับ Item สินค้า:**
+   - ไปที่แผง Assets -> ค้นหา **"Card"** แล้วลาก Component `Horizontal Card` ลงบน Frame
+   - ปรับขนาด Card เป็น Width = 328px, Height = 100px
+   - ที่แผง Design ด้านขวา สังเกตส่วน Fill: ให้เลือกใช้ Theme ที่ทำการสร้างในไฟล์ (Create in this file)
+      **การจัดการ Theme สามารถทำได้บน Figma เช่นกัน โดย กดปุ่ม Ctrl + P แล้วค้นหา Plugins ชื่อ Material Theme Builder แล้วทำการกำหนดค่าสีของ Theme ตามต้องการ**
+   - จัดตำแหน่ง Card ให้อยู่กลางหน้าจอ (ต่อจาก App Bar)
+2. **ปรับแต่งคุณสมบัติต่าง ๆ ของ Card สินค้า:**
+   - แก้ไข Header text เป็น **"ผักสลัดออร์แกนิก"** 
+   - แก้ไข Subhead Text เป็น **"สดใหม่จากฟาร์ม • ฿45 / กิโลกรัม"**
+3. **จัดกลุ่มด้วย Auto Layout และทำซ้ำ (Duplicate):**
+   - คลิกขวาที่ Card แล้วเลือก **"Add Auto Layout"** (คีย์ลัด `Shift + A`) เพื่อให้การจัดระยะห่างภายใน Card เป็นไปตามมาตรฐาน
+   - คัดลอก Card ออกมาเป็น 4 รายการ โดยกด เลือก ที่ เมนู File -> เลือก Frame ของ card ดังกล่าว -> เลือก card ->  กด`Cmd/Ctrl + D` แล้วเปลี่ยนข้อมูลสินค้าให้หลากหลาย:
+     - รายการที่ 1: ผักสลัดออร์แกนิก (สดใหม่จากฟาร์ม • ฿45 / กิโลกรัม)
+     - รายการที่ 2: สตรอว์เบอร์รีสด (หวานกรอบ เกรดพรีเมียม • ฿120 / กล่อง)
+     - รายการที่ 3: กล้วยหอมทอง (อุดมด้วยวิตามิน • ฿35 / หวี)
+     - รายการที่ 4: มะเขือเทศเชอร์รี (ปลอดสารเคมี 100% • ฿50 / ถุง)
+   - เว้นระยะห่างระหว่าง Card แต่ละใบ (Spacing) เท่ากับ 12px
+4. **เพิ่ม Floating Action Button (FAB):**
+   - ค้นหา **"FAB"** ในแถบ Assets
+   - ลาก `Extended FAB` มาวางไว้บริเวณมุมล่างขวา (X = 220px, Y = 680px)
+   - เปลี่ยนข้อความบน FAB เป็น **"+ เพิ่มสินค้า"**
+5. **เพิ่ม Bottom Navigation Bar:**
+   - ค้นหา **"Navigation Bar: Vertical items"** ในแถบ Assets
+   - ลากมาวางด้านล่างสุดของ Frame (X = 0, Y = 741px)
+   - กำหนดให้มี 3 Destinaton Icon/Label:
+     - Item 1: `หน้าหลัก` (Icon: home, สถานะ Active)
+     - Item 2: `ค้นหา` (Icon: search)
+     - Item 3: `โปรไฟล์` (Icon: person)
+**กรณีหา icon ไม่เจอ ให้เปลี่ยนไปเลือก Simple Design System**
+---
 
-สำหรับ App หมวดไหนก็ได้ที่คุณต้องการ (เช่น Recipe App, Todo App, E-commerce):
+#### ขั้นตอนออกแบบหน้ารายละเอียดสินค้า (Detail Screen)
 
-1. **สร้าง Card สำหรับ Item:**
-   - ไปที่ Assets Panel → ค้นหา **"Card"** แล้วลาก Component `Elevated Card` (หรือ `Filled Card`) จาก Material 3 Kit ลงบน Frame แทนการวาด Rectangle เอง — Corner Radius จะติดมากับ Component โดยอัตโนมัติตามสเปก M3 ไม่ต้องตั้งเอง
-   - ปรับขนาดเป็น 328 × 100 dp
-   - ถ้าต้องการปรับสีพื้น ให้ไปที่ Fill → เลือก **Color Style** จาก Library ที่ Enable ไว้ในขั้นตอน 2.2 (เช่น "Surface Variant") แทนการพิมพ์ Hex Code เอง เพราะ Kit ผูก Design Token ไว้ให้แล้ว การพิมพ์ Hex ตรง ๆ จะทำให้ Dark Mode พังทันทีตามที่อธิบายในทฤษฎีข้อ 1.1
-   - จัดตำแหน่ง: x=16 dp, y=80 dp (ใต้ App Bar)
-
-2. **เพิ่ม Text บน Card:**
-   - กด `T` (Text tool) คลิกบน Card
-   - พิมพ์ชื่อ Item แล้วไปที่ Text Style ในแผงขวา → เลือก **"Title Medium"** จาก Library (แทนการตั้งขนาด 16/Weight Medium เอง)
-   - เพิ่ม Subtitle แล้วเลือก Text Style **"Body Medium"** จาก Library จากนั้นเปลี่ยนสีตัวอักษรเป็น Color Style **"On Surface Variant"** (แทนการพิมพ์ `#666666`) เพื่อให้สีเปลี่ยนตาม Light/Dark Mode อัตโนมัติเช่นเดียวกับพื้น Card
-
-3. **สร้าง Card รูปแบบเดียวกัน 3–4 ชุด:**
-   - Select Card ทั้งหมด (กด Cmd/Ctrl + G เพื่อ Group)
-   - Duplicate ด้วย `Cmd/Ctrl + D`
-   - เลื่อนลงมา 16 dp จาก Card บน
-   - ทำซ้ำ 2–3 ครั้ง
-
-4. **เพิ่ม Bottom Navigation Bar:**
-   - ไปที่ Assets → ค้นหา **"Navigation Bar"**
-   - ลาก Component ลงที่ด้านล่างสุด (y = 752 dp สำหรับ Frame สูง 800 dp)
-   - ปรับ width: 360 dp
-   - แก้ไข Label: เลือก 3 Tab ที่เหมาะกับ App (เช่น Home/Search/Profile)
-
-5. **เพิ่ม FAB (Floating Action Button):**
-   - ไปที่ Assets → ค้นหา **"FAB"**
-   - เลือก Extended FAB หรือ Regular FAB
-   - วางที่ด้านล่างขวา: x=280 dp, y=680 dp
-
-**ขั้นตอนที่ 2.6: ออกแบบ Detail Screen (ทำเองอย่างน้อย 1 จอ)**
-
-คิด flow ว่า: เมื่อกด Card บน Home จะไป Detail Screen อะไร  
-ออกแบบ Detail Screen ให้มีอย่างน้อย:
-- Top App Bar พร้อม Back button (ไอคอน arrow_back)
-- รูปภาพ/Banner ขนาดใหญ่
-- ชื่อและรายละเอียด
-- ปุ่ม Action หลัก 1 ปุ่ม (FilledButton)
-
-**ขั้นตอนที่ 2.6b: ออกแบบ Profile Screen (Bonus ไม่บังคับ)**
-
-Frame `Profile Screen` ที่สร้างไว้ในขั้นตอนที่ 2.3 ไม่ใช่ส่วนบังคับของ Checklist การประเมิน (ซึ่งต้องการแค่ Home + 1 หน้าอื่นเป็นอย่างน้อย) แต่ถ้ามีเวลาเหลือ แนะนำให้ลองออกแบบเพื่อฝึกฝีมือเพิ่ม โดยควรมีอย่างน้อย:
-- Avatar วงกลมและชื่อผู้ใช้ (Title Large)
-- Bottom Navigation Bar เดียวกับ Home Screen (ให้ Tab "โปรไฟล์" เป็น Active)
-- ปุ่ม "แก้ไขโปรไฟล์" (OutlinedButton)
-
-หากไม่มีเวลาออกแบบ Profile Screen ให้ลบ Frame นี้ทิ้งหรือปล่อยว่างไว้ได้ ไม่มีผลต่อคะแนน
-
-**ขั้นตอนที่ 2.7: เพิ่ม Prototype Connection (Optional, สำหรับ Demo)**
-1. สลับไปที่ **Prototype tab** (แผง Properties ขวา)
-2. Hover ที่ Card บน Home Screen → จะเห็น `+` ปรากฏ
-3. ลาก Connection ไปยัง Detail Screen
-4. ตั้งค่า Interaction: "On tap" → Navigate to → Detail Screen
-5. Transition: Push (Right) → ทดลอง Preview ด้วย `Cmd/Ctrl + Shift + Enter`
-
-**ขั้นตอนที่ 2.8: บันทึกผล**
-
-Screenshot Design ของคุณทั้ง 3 หน้า และตอบคำถาม:
-
-| คำถาม | คำตอบ |
-|-------|-------|
-| App ที่ออกแบบคือ? | _________________ |
-| Primary Color ที่ใช้? | _________________ |
-| Navigation Pattern ที่เลือก? | _________________ |
-| ทำไมเลือก Pattern นี้? | _________________ |
+**ขั้นตอนที่ 2.6: ออกแบบ Detail Screen**
+1. คลิกเลือก Frame `Detail_Screen`
+2. ลาก Component **App Bar** มาวางด้านบนสุด (X = 0, Y = 0)
+   - เปลี่ยน Title เป็น **"รายละเอียดสินค้า"**
+   - เปิดการแสดงผล Navigation Icon ฝั่งซ้ายให้เป็นไอคอนย้อนกลับ (`arrow_back`) **ดูในส่วนของ Leading icon: เปลี่ยนตรง icon**
+3. **ส่วนแสดงรูปภาพปกสินค้า (Banner Image):**
+   - สร้าง Rectangle ขนาด 360 × 200px วางต่อใต้ App Bar (Y = 64px)
+   - ตั้งค่าการ Fill ให้เป็น image และใส่รูปภาพขนาดใหญ่ตรงกลางเพื่อจำลองเป็นรูปภาพสินค้า
+4. **ส่วนรายละเอียดเนื้อหา (Product Info):**
+   - ใส่ข้อความชื่อสินค้า **"ผักสลัดออร์แกนิก"** -> กำหนด Text Style เป็น **"Headline Medium"**
+   - ใส่ข้อความราคา **"฿45 / กิโลกรัม"** -> กำหนด Text Style เป็น **"Title Large"** สี `Primary`
+   - ใส่ข้อความหัวข้อ **"รายละเอียดสินค้า"** -> Text Style **"Title Medium"**
+   - ใส่ข้อความบรรยาย: **"ผักสลัดออร์แกนิกปลูกด้วยระบบไฮโดรโปนิกส์ ไม่ใช้สารเคมีฆ่าแมลง เก็บสดใหม่ทุกเช้า เหมาะสำหรับทำสลัดสุขภาพ"** -> Text Style **"Body Large"**
+5. **ส่วนปุ่มดำเนินการ (Action Buttons):**
+   - ลาก Component **Button** มาวางด้านล่าง -> กำหนด Width = 328px, เปลี่ยนข้อความเป็น **"เพิ่มลงตะกร้าสินค้า"** (Primary Action)
+   - ลาก Component **Outlined Button** วางต่อด้านล่าง -> กำหนด Width = 328px, เปลี่ยนข้อความเป็น **"ย้อนกลับ"** (Secondary Action)
 
 ---
 
-### การทดลองที่ 3: แปลง Design เป็น Flutter Code (55 นาที)
+#### ขั้นตอนออกแบบหน้าโปรไฟล์ผู้ใช้ (Profile Screen)
+
+**ขั้นตอนที่ 2.6b: ออกแบบ Profile Screen**
+1. คลิกเลือก Frame `3_Profile_Screen`
+2. ลาก **oApp Bar** มาวางด้านบนสุด เปลี่ยน Title เป็น **"โปรไฟล์ผู้ใช้"**
+3. **ส่วนข้อมูลผู้ใช้งาน:**
+   - สร้าง Circle (กด `O`) ขนาด 80 × 80px วางไว้กึ่งกลางหน้าจอ (X = 140px, Y = 100px) กำหนดสีเป็น `Primary Container` และใส่ Text ตัวอักษรย่อ หรือ Icon `person`
+   - ใส่ข้อความชื่อผู้ใช้ **"สมชาย ใจดี"** -> Text Style **"Headline Small"**
+   - ใส่ข้อความอีเมล **"student_ID@kmitl.ac.th"** -> Text Style **"Body Medium"** สี `On Surface Variant`
+4. **ส่วนปุ่มจัดการโปรไฟล์:**
+   - ลาก Component **Button - Outline** วางกึ่งกลาง -> เปลี่ยนข้อความเป็น **"แก้ไขข้อมูลโปรไฟล์"**
+5. **วาง Navigation Bar: Horizontal โดยการคัดลอกจากหน้าหลัก**
+   - คัดลอก Navigation Bar จากหน้า Home มาวางที่ตำแหน่งเดียวกัน (Y = 720px)
+   - ปรับสถานะ Active ให้ไฮไลท์อยู่ที่ Item 3 (`โปรไฟล์`)
+
+---
+
+#### ขั้นตอนทำ Prototype และเชื่อมโยงหน้าจอ
+
+**ขั้นตอนที่ 2.7: เพิ่ม Prototype Connection**
+1. สลับโหมดการทำงานที่แผงขวาจาก **Design** เป็น **Prototype**
+2. เลือก Card สินค้ารายการแรก ("ผักสลัดออร์แกนิก") ในหน้า `1_Home_Screen`
+3. ลากเส้นเชื่อมโยง (Node) จาก Card ใบนั้นไปยัง Frame `2_Detail_Screen`
+4. ในหน้าต่าง Interaction Details กำหนดค่าดังนี้:
+   - **Trigger:** `On tap`
+   - **Action:** `Navigate to` -> `2_Detail_Screen`
+   - **Animation:** `Smart animate` หรือ `Slide in` (Ease out 300ms)
+5. ทดลองทดสอบความถูกต้องโดยกดปุ่ม **Present** (รูปไอคอน Play มุมบนขวา หรือ `Cmd/Ctrl + Shift + Enter`)
+
+**ขั้นตอนที่ 2.8: บันทึกผลการทดลอง**
+
+Screenshot หน้าจอ Design ทั้ง 3 หน้า และบันทึกข้อมูลสรุป:
+
+```image
+วางรูปหน้าจอ ที่นี่
+```
+
+---
+
+### การทดลองที่ 3: แปลง Design เป็น Flutter Code
 
 #### วัตถุประสงค์
-เขียน Flutter Widget จาก Design ที่ออกแบบใน Figma
+เขียน Flutter Widget จาก Design แอปพลิเคชัน **"Green Market"** ที่ออกแบบไว้ใน Figma
 
 #### ขั้นตอนเตรียมการ
 
 **ขั้นตอนที่ 3.1: เตรียม Flutter Project**
-1. เปิด Terminal/Command Prompt
+1. เปิด Terminal / Command Prompt
 2. สร้าง Flutter Project ใหม่:
    ```bash
    flutter create week03_ui_lab
@@ -392,7 +404,7 @@ Screenshot Design ของคุณทั้ง 3 หน้า และตอ�
    ```bash
    code .
    ```
-4. คัดลอกไฟล์ `color_schemes.g.dart` ที่ Export มาจาก**การทดลองที่ 1** (ขั้นตอนที่ 1.3) ไปวางไว้ที่ `lib/color_schemes.g.dart` — นี่คือจุดที่งานจากการทดลองที่ 1 ถูกนำมาใช้จริงในการทดลองนี้
+4. คัดลอกไฟล์ `lib/theme.dart` ที่ Export มาจาก**การทดลองที่ 1** (ขั้นตอนที่ 1.3) ไปวางไว้ที่ `lib/theme.dart` — นี่คือจุดที่งานจากการทดลองที่ 1 ถูกนำมาใช้จริงในการทดลองนี้
 
 **ขั้นตอนที่ 3.2: ตั้งค่า Material 3 Theme**
 
@@ -400,62 +412,99 @@ Screenshot Design ของคุณทั้ง 3 หน้า และตอ�
 
 ```dart
 import 'package:flutter/material.dart';
-import 'color_schemes.g.dart'; // ไฟล์ที่ Export จาก Material Theme Builder ในการทดลองที่ 1
+import 'theme.dart';                 // Theme ที่ Export จาก Material Theme Builder
+import 'screens/home_screen.dart';   // หน้า Home ของแอป
 
 void main() {
+  // จุดเริ่มต้นของโปรแกรม Flutter
   runApp(const MyApp());
 }
 
+///
+/// MyApp เป็น Widget หลักของแอปพลิเคชัน
+///
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    // ------------------------------------------------------------------
+    // สร้าง MaterialTheme จากไฟล์ theme.dart
+    //
+    // Material Theme Builder จะสร้างคลาส MaterialTheme มาให้
+    // โดยต้องส่ง TextTheme เข้าไปใน Constructor
+    //
+    // ThemeData(useMaterial3: true).textTheme
+    // คือ TextTheme มาตรฐานของ Material Design 3
+    // ------------------------------------------------------------------
+    final materialTheme = MaterialTheme(
+      ThemeData(useMaterial3: true).textTheme,
+    );
+
     return MaterialApp(
-      title: 'Week 03 UI Lab',
+
+      // ชื่อแอปพลิเคชัน
+      title: 'Green Market App',
+
+      // ซ่อนแถบ DEBUG ที่มุมขวาบน
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,           // เปิดใช้ Material 3
-        colorScheme: lightColorScheme, // ← ColorScheme ที่ Export มาจากการทดลองที่ 1 (Light)
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: darkColorScheme,  // ← ColorScheme ที่ Export มาจากการทดลองที่ 1 (Dark)
-      ),
-      themeMode: ThemeMode.system,     // สลับตามระบบ
+
+      // --------------------------------------------------------------
+      // Theme สำหรับโหมด Light
+      //
+      // ใช้ ThemeData ที่สร้างจาก Material Theme Builder
+      // ภายในประกอบด้วย
+      // - ColorScheme
+      // - Typography
+      // - Surface Color
+      // - Scaffold Background
+      // และค่าต่าง ๆ ของ Material Design 3
+      // --------------------------------------------------------------
+      theme: materialTheme.light(),
+
+      // --------------------------------------------------------------
+      // Theme สำหรับโหมด Dark
+      // --------------------------------------------------------------
+      darkTheme: materialTheme.dark(),
+
+      // --------------------------------------------------------------
+      // เลือก Theme ตามการตั้งค่าของระบบปฏิบัติการ
+      //
+      // ThemeMode.system
+      //   Light Mode -> ใช้ theme
+      //   Dark Mode  -> ใช้ darkTheme
+      // --------------------------------------------------------------
+      themeMode: ThemeMode.system,
+
+      // หน้าแรกของแอป
       home: const HomeScreen(),
     );
   }
 }
 ```
 
-> **หมายเหตุ:** ถ้าไฟล์ `color_schemes.g.dart` หายหรือ Export ไม่สำเร็จ ให้ใช้ทางเลือกสำรองนี้แทน (ผลลัพธ์ใกล้เคียงกันมาก เพราะคำนวณจาก Seed Color เดียวกัน):
-> ```dart
-> colorScheme: ColorScheme.fromSeed(
->   seedColor: const Color(0xFF2E7D32), // ← เปลี่ยนเป็นสีที่คุณเลือกใน Figma
->   brightness: Brightness.light,
-> ),
-> ```
 
 **ขั้นตอนที่ 3.3: วิเคราะห์ Design เป็น Widget Tree**
 
-ก่อนเขียน code ให้วาด Widget Tree บนกระดาษหรือ Whiteboard (หรือใช้เครื่องมือวาดออนไลน์อย่าง Excalidraw หรือ FigJam ซึ่งสะดวกกว่าสำหรับนักศึกษายุคนี้):
+ก่อนเขียน code ให้วาด Widget Tree บนกระดาษหรือ Whiteboard:
 
 ```
-สำหรับ Home Screen:
+สำหรับ Green Market Home Screen:
 
 Scaffold
 ├── AppBar
-│   └── Text("ชื่อ App")
+│   └── Text("Green Market")
 ├── body: ListView
-│   ├── ItemCard (item 1)
-│   ├── ItemCard (item 2)
-│   └── ItemCard (item 3)
-├── floatingActionButton: FloatingActionButton
+│   ├── ItemCard (ผักสลัดออร์แกนิก)
+│   ├── ItemCard (สตรอว์เบอร์รีสด)
+│   ├── ItemCard (กล้วยหอมทอง)
+│   └── ItemCard (มะเขือเทศเชอร์รี)
+├── floatingActionButton: FloatingActionButton.extended ("+ เพิ่มสินค้า")
 └── bottomNavigationBar: NavigationBar
-      ├── NavigationDestination (Home)
-      ├── NavigationDestination (Search)
-      └── NavigationDestination (Profile)
+      ├── NavigationDestination (หน้าหลัก)
+      ├── NavigationDestination (ค้นหา)
+      └── NavigationDestination (โปรไฟล์)
 ```
 
 **ขั้นตอนที่ 3.4: สร้างไฟล์โครงสร้าง**
@@ -464,6 +513,7 @@ Scaffold
 ```
 lib/
 ├── main.dart
+├── theme.g.dart
 ├── screens/
 │   ├── home_screen.dart
 │   └── detail_screen.dart
@@ -471,7 +521,7 @@ lib/
     └── item_card.dart
 ```
 
-สร้างโฟลเดอร์และไฟล์:
+สร้างโฟลเดอร์และไฟล์ด้วยคำสั่ง:
 ```bash
 mkdir -p lib/screens lib/widgets
 touch lib/screens/home_screen.dart
@@ -488,7 +538,7 @@ touch lib/widgets/item_card.dart
 ```dart
 import 'package:flutter/material.dart';
 
-/// ItemCard แสดงข้อมูล Item แบบ Card
+/// ItemCard แสดงข้อมูลสินค้าในแอป Green Market
 /// เป็น Reusable Widget ที่รับ data ผ่าน Constructor
 class ItemCard extends StatelessWidget {
   final String title;
@@ -506,17 +556,14 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ดึง ColorScheme จาก Theme ที่ตั้งค่าไว้ใน main.dart
+    // ดึง ColorScheme และ TextTheme จาก Theme ของแอพ
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
     return Card(
-      // Material 3 Card: elevation = 1 (Elevated style)
-      elevation: 1,
+      elevation: 1, // Material 3 Elevated Card style
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      // สำคัญ: ต้องมี clipBehavior เพื่อให้ Ripple effect ของ InkWell
-      // ถูกตัดให้โค้งตามขอบ Card ไม่ล้นออกไปเป็นมุมเหลี่ยม
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.antiAlias, // ตัดขอบ Ripple Effect ไม่ให้ล้น Card
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -524,7 +571,7 @@ class ItemCard extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              // Icon Container
+              // Product Icon Container
               Container(
                 width: 48,
                 height: 48,
@@ -539,14 +586,13 @@ class ItemCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              // Text Content
+              // Product Detail Text
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
-                      // ใช้ titleMedium จาก TextTheme (Material 3)
                       style: textTheme.titleMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -554,8 +600,6 @@ class ItemCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      // ใช้ bodyMedium ให้ตรงกับสเปกที่ออกแบบไว้ใน Figma
-                      // (ขั้นตอนที่ 2.5 ใช้ Text Style "Body Medium" สำหรับ Subtitle)
                       style: textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
@@ -596,30 +640,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // State: tab ที่เลือกอยู่ใน Bottom Navigation
   int _selectedIndex = 0;
 
-  // ข้อมูลตัวอย่าง (ในโปรเจกต์จริงจะดึงจาก API/Database)
+  // รายการสินค้าตัวอย่างของแอป Green Market
   final List<Map<String, dynamic>> _items = [
     {
-      'title': 'รายการที่ 1',
-      'subtitle': 'คำอธิบายสั้น ๆ ของรายการนี้',
-      'icon': Icons.star_outline,
+      'title': 'ผักสลัดออร์แกนิก',
+      'subtitle': 'สดใหม่จากฟาร์ม • ฿45 / กิโลกรัม',
+      'icon': Icons.eco,
     },
     {
-      'title': 'รายการที่ 2',
-      'subtitle': 'ข้อมูลเพิ่มเติมของรายการที่สอง',
-      'icon': Icons.favorite_outline,
+      'title': 'สตรอว์เบอร์รีสด',
+      'subtitle': 'หวานกรอบ เกรดพรีเมียม • ฿120 / กล่อง',
+      'icon': Icons.shopping_basket,
     },
     {
-      'title': 'รายการที่ 3',
-      'subtitle': 'รายละเอียดของรายการที่สาม',
-      'icon': Icons.bookmark_outline,
+      'title': 'กล้วยหอมทอง',
+      'subtitle': 'อุดมด้วยวิตามิน • ฿35 / หวี',
+      'icon': Icons.lightbulb_outline,
     },
     {
-      'title': 'รายการที่ 4',
-      'subtitle': 'ข้อมูลของรายการที่สี่',
-      'icon': Icons.schedule_outlined,
+      'title': 'มะเขือเทศเชอร์รี',
+      'subtitle': 'ปลอดสารเคมี 100% • ฿50 / ถุง',
+      'icon': Icons.local_florist,
     },
   ];
 
@@ -632,22 +675,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Material 3 AppBar: Center-aligned
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('My App'),
+        title: const Text('Green Market'),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {
-              // TODO: เพิ่ม Search functionality
-            },
-            tooltip: 'ค้นหา',
+            onPressed: () {},
+            tooltip: 'ค้นหาสินค้า',
           ),
         ],
       ),
-
-      // Body: ListView แสดง ItemCard
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 8),
         itemCount: _items.length,
@@ -658,7 +696,6 @@ class _HomeScreenState extends State<HomeScreen> {
             subtitle: item['subtitle'],
             icon: item['icon'],
             onTap: () {
-              // Navigate ไป Detail Screen พร้อมส่งข้อมูล
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -672,23 +709,18 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-
-      // FAB: Primary action ของหน้า
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // TODO: เพิ่มรายการใหม่
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('เพิ่มรายการใหม่'),
+              content: Text('เปิดหน้าเพิ่มสินค้าใหม่'),
               behavior: SnackBarBehavior.floating,
             ),
           );
         },
         icon: const Icon(Icons.add),
-        label: const Text('เพิ่มใหม่'),
+        label: const Text('เพิ่มสินค้า'),
       ),
-
-      // Bottom Navigation Bar (Material 3)
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTapped,
@@ -739,88 +771,77 @@ class DetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        // Back button เพิ่มให้อัตโนมัติเมื่อ Navigator มี stack
-        title: Text(title),
+        title: const Text('รายละเอียดสินค้า'),
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Banner Image Placeholder
+            // Banner Placeholder สำหรับรูปสินค้า
             Container(
               width: double.infinity,
               height: 200,
               color: colorScheme.primaryContainer,
               child: Icon(
-                Icons.image_outlined,
-                size: 64,
+                Icons.eco,
+                size: 80,
                 color: colorScheme.onPrimaryContainer,
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title
                   Text(
                     title,
                     style: textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 8),
-
-                  // Subtitle
                   Text(
                     subtitle,
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
+                    style: textTheme.titleMedium?.copyWith(
+                      color: colorScheme.primary,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Detail Content
                   Text(
-                    'รายละเอียด',
+                    'รายละเอียดสินค้า',
                     style: textTheme.titleLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'นี่คือพื้นที่สำหรับเนื้อหาของรายการ '
-                    'ในโปรเจกต์จริงจะแสดงข้อมูลที่ดึงมาจาก API หรือฐานข้อมูล '
-                    'ตามที่ออกแบบไว้ใน Figma',
+                    'สินค้าเกษตรคุณภาพสูง ปลูกด้วยกระบวนการธรรมชาติ ปลอดภัยจากสารเคมี '
+                    'คัดสรรเป็นพิเศษจากฟาร์มสมาชิกของ Green Market เพื่อให้คุณได้รับประทานอาหาร '
+                    'เพื่อสุขภาพที่สดใหม่ในทุกวัน',
                     style: textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 32),
-
-                  // Action Button
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton.icon(
                       onPressed: () {
-                        // TODO: Primary Action
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('ดำเนินการสำเร็จ'),
+                            content: Text('เพิ่มลงตะกร้าสินค้าเรียบร้อยแล้ว'),
                             behavior: SnackBarBehavior.floating,
                           ),
                         );
                       },
-                      icon: const Icon(Icons.check),
-                      label: const Text('ดำเนินการ'),
+                      icon: const Icon(Icons.shopping_cart),
+                      label: const Text('เพิ่มลงตะกร้าสินค้า'),
                     ),
                   ),
                   const SizedBox(height: 8),
-
-                  // Secondary Action
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: () {
-                        Navigator.pop(context); // กลับหน้าก่อน
+                        Navigator.pop(context);
                       },
                       icon: const Icon(Icons.arrow_back),
-                      label: const Text('กลับ'),
+                      label: const Text('ย้อนกลับ'),
                     ),
                   ),
                 ],
@@ -836,18 +857,14 @@ class DetailScreen extends StatelessWidget {
 
 **ขั้นตอนที่ 3.8: อัปเดต main.dart**
 
-เพิ่ม import และเปลี่ยน home:
+เพิ่ม import และเชื่อมต่อ HomeScreen ให้ถูกต้อง:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';  // ← เพิ่ม import
+import 'theme.dart';                 // Theme ที่ Export จาก Material Theme Builder
+import 'screens/home_screen.dart';   // หน้า Home ของแอป
 
-void main() {
-  runApp(const MyApp());
-}
-
-// ... (ส่วน MyApp คงเดิม แต่เปลี่ยน home:)
-// home: const HomeScreen(),  ← แก้ไขบรรทัดนี้
+// ในคลาส MyApp ให้กำหนด home: const HomeScreen()
 ```
 
 **ขั้นตอนที่ 3.9: รัน App และตรวจสอบ**
@@ -856,21 +873,24 @@ void main() {
 flutter run
 ```
 
-ตรวจสอบ:
-- [ ] App Bar แสดงชื่อถูกต้อง
-- [ ] มี Card แสดง 4 รายการ
-- [ ] กด Card แล้วไป Detail Screen ได้
-- [ ] กด Back button กลับ Home ได้
-- [ ] Bottom Navigation สลับ Tab ได้ (ไฮไลท์ถูกต้อง)
-- [ ] FAB ปรากฏและแสดง SnackBar เมื่อกด
-- [ ] สีตรงกับ Material 3 Color Scheme
+ตรวจสอบความถูกต้อง:
+- [ ] App Bar แสดงชื่อ "Green Market"
+- [ ] แสดงรายการสินค้า Card ทั้ง 4 รายการถูกต้อง
+- [ ] กด Card สินค้าแล้ว Navigate ไปยัง Detail Screen ได้
+- [ ] กด Back / ปุ่มย้อนกลับได้ถูกต้อง
+- [ ] Bottom Navigation สลับ Tab ได้
+- [ ] FAB แสดง SnackBar เมื่อถูกคลิก
 
+**แก้ไขเปลี่ยนแปลง App Bar ให้แสดง คำว่า "Dev by" ตามด้วยชื่อนักศึกษา** แล้วบันทึกรูปผลการทดลอง
+```image
+บันทึกรูปที่นี่
+``` 
 ---
 
 ### การทดลองที่ 4: ใช้ AI ช่วย Generate UI Component (30 นาที)
 
 #### วัตถุประสงค์
-ฝึกใช้ Google AI Studio สร้าง Flutter Widget และ evaluate ผล
+ฝึกใช้ Google AI Studio สร้าง Flutter Widget
 
 #### ขั้นตอน
 
@@ -894,12 +914,9 @@ Create a Flutter StatelessWidget called "UserProfileCard" that:
 5. Shows a row of 3 stats: Posts, Followers, Following (using Column: number + label)
 6. Uses Card widget with proper Material 3 elevation
 7. Reads colors from Theme.of(context).colorScheme (NO hardcoded colors)
-8. Has proper padding (16 logical pixels) and spacing (8 logical pixels between elements)
+8. Has proper padding (16px) and spacing (8px between elements)
 9. Accepts these constructor parameters: name, email, avatarUrl (nullable), 
    postsCount, followersCount, followingCount
-10. Do not hard-code typography — use Theme.of(context).textTheme for all text styles
-11. Follow Material Design 3 guidelines throughout
-12. Support both Light and Dark theme correctly
 
 Add brief comments explaining each section.
 ```
@@ -920,7 +937,7 @@ Add brief comments explaining each section.
 1. สร้างไฟล์ `lib/widgets/user_profile_card.dart`
 2. วาง code จาก AI Studio
 3. แก้ไขส่วนที่ผิดหรือไม่เหมาะสม (ถ้ามี)
-4. Import และใช้ใน Profile Tab ของ Home Screen
+4. Import และใช้ใน Profile Tab ของ Home Screen (สอบถาม AI ว่าต้องทำอย่างไร)
 
 **ขั้นตอนที่ 4.5: ทดลอง Multimodal — ส่งรูป Figma ให้ AI วิเคราะห์**
 
@@ -934,11 +951,15 @@ Add brief comments explaining each section.
    Then implement it as a Flutter StatelessWidget.
    Use Material 3 components and read colors from Theme.of(context).colorScheme.
    ```
-5. ดู code ที่ได้ และเปรียบเทียบกับ code ที่เขียนเองในการทดลองที่ 3
+5. ดู Code และ Widget Tree ที่ได้ และเปรียบเทียบกับ  Code และ Widget tree ที่เขียนเองในการทดลองที่ 3
+   
+```text
+เขียนผลการเปรียบเทียบที่นี่
 
+```
 ---
 
-### การทดลองที่ 5: Dark Mode และ Accessibility Check (20 นาที)
+### การทดลองที่ 5: Dark Mode และ Accessibility Check 
 
 #### วัตถุประสงค์
 ทดสอบว่า UI ทำงานได้ดีทั้ง Light/Dark Mode และผ่าน Accessibility เบื้องต้น
@@ -946,17 +967,19 @@ Add brief comments explaining each section.
 **ขั้นตอนที่ 5.1: ทดสอบ Dark Mode**
 
 1. ใน `main.dart` เปลี่ยน `themeMode` เป็น `ThemeMode.dark` ชั่วคราว
-2. รัน App → ตรวจสอบว่าทุก Text อ่านออกไหม
+2. รัน App → ตรวจสอบว่าทุก Text อ่านออกหรือไหม
 3. มีสีไหนที่ contrast ต่ำเกินไปไหม (ตัวอักษรจางบนพื้นหลังจาง)
 4. เปลี่ยนกลับเป็น `ThemeMode.system`
 
-> **ถ้าพบปัญหา:** ตรวจสอบว่าใช้ `colorScheme.onSurface` / `colorScheme.onSurfaceVariant` สำหรับ text แทนที่จะ hardcode สี
 
+// ยังไม่ต้องทำข้อ 5.2  5.3
 **ขั้นตอนที่ 5.2: ตรวจสอบ Touch Target Size**
 
 ใน Flutter DevTools:
 1. รัน App ใน Debug mode: `flutter run --debug`
-2. เปิด **Flutter Inspector** ใน DevTools
+2. เปิด **Flutter Inspector** กดคีย์ลัด Ctrl + Shift + P (สำหรับ Windows) หรือ Cmd + Shift + P (สำหรับ macOS)
+
+พิมพ์คำว่า: Flutter: Open DevTools
 3. Enable **"Show guidelines"** → จะเห็น layout boundary
 4. ตรวจสอบว่า Interactive element ทุกชิ้นมีขนาดอย่างน้อย **48×48 dp**
 
@@ -983,19 +1006,9 @@ IconButton(
 
 ---
 
-## 📝 สรุปและส่งงาน
-
-### สิ่งที่ต้องส่ง
-
-| รายการ | รูปแบบ | คะแนน |
-|--------|--------|-------|
-| Figma Design (link หรือ export PDF) | .pdf หรือ Figma link | 5 คะแนน |
-| Flutter Project | .zip หรือ GitHub link | 10 คะแนน |
-| สรุปการเรียนรู้ (ตอบคำถามด้านล่าง) | ในใบงานนี้ | 5 คะแนน |
-
 ### คำถามสรุปการเรียนรู้ (ตอบทุกข้อ)
 
-**ข้อ 1:** Material 3 ต่างจาก Material 2 อย่างไรในด้าน Color System? (3–5 ประโยค)
+**ข้อ 1:** Material 3 ต่างจาก Material 2 อย่างไรในด้าน Color System? 
 
 ```
 คำตอบ: _______________________________________________
@@ -1007,7 +1020,7 @@ IconButton(
 คำตอบ: _______________________________________________
 ```
 
-**ข้อ 3:** Code ที่ AI สร้างให้นั้นดีแค่ไหน? ต้องปรับปรุงอะไรบ้าง?
+**ข้อ 3:** Code ที่ AI สร้างให้นั้นสมบูรณ์แค่ไหน? ต้องปรับปรุงอะไรบ้าง?
 
 ```
 คำตอบ: _______________________________________________
@@ -1018,31 +1031,6 @@ IconButton(
 ```
 คำตอบ: _______________________________________________
 ```
-
----
-
-## 🎯 Checklist การประเมิน
-
-### Figma Design (5 คะแนน)
-- [ ] มี Frame ขนาด 360 × 800 หรือ Mobile standard
-- [ ] ออกแบบอย่างน้อย 2 หน้า (Home + 1 หน้าอื่น)
-- [ ] ใช้ Material Design 3 Component (AppBar, Card, Button, Navigation)
-- [ ] สีสม่ำเสมอ ใช้ Color Scheme จาก Material Theme Builder
-- [ ] Typography ถูกต้องตาม Scale (ไม่ใช้ขนาดสุ่ม)
-
-### Flutter Code (10 คะแนน)
-- [ ] ตั้งค่า Material 3 ด้วย `useMaterial3: true` และใช้ `ColorScheme` ที่ Export จาก Material Theme Builder (`color_schemes.g.dart`)
-- [ ] มี `ItemCard` widget แยกไฟล์ และ reusable
-- [ ] มี Bottom Navigation Bar ทำงานได้ถูกต้อง
-- [ ] Navigate ไป Detail Screen และ Back ได้
-- [ ] ไม่มีการ hardcode สี (ใช้ `colorScheme` จาก Theme ทั้งหมด)
-- [ ] Code อ่านได้ มี comment อธิบาย
-- [ ] รองรับ Dark Mode โดยไม่มีปัญหา Contrast (ตรวจตามขั้นตอนในการทดลองที่ 5.1)
-- [ ] `IconButton` ทุกตัวมี `tooltip` หรือ Semantic label ครบ (ตรวจตามขั้นตอนในการทดลองที่ 5.3)
-
-### สรุปการเรียนรู้ (5 คะแนน)
-- [ ] ตอบครบทุกข้อ
-- [ ] แสดงให้เห็นว่าเข้าใจ ไม่ใช่แค่ copy-paste
 
 ---
 
