@@ -380,9 +380,8 @@ Prompt ที่ไม่ดี:
 
 Screenshot หน้าจอ Design ทั้ง 3 หน้า และบันทึกข้อมูลสรุป:
 
-```image
-วางรูปหน้าจอ ที่นี่
-```
+<img width="834" height="602" alt="image" src="https://github.com/user-attachments/assets/0479e894-24ea-4e67-ad5b-7a1ec165e37e" />
+
 
 ---
 
