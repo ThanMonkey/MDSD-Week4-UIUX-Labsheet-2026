@@ -236,20 +236,21 @@ Prompt ที่ไม่ดี:
 
 | รายการ | ค่าที่ได้ |
 |--------|---------|
-| Primary Color (Hex) | _________________ |
-| Secondary Color (Hex) | _________________ |
-| Primary Container (Hex) | _________________ |
-| Surface (Hex) | _________________ |
+| Primary Color (Hex) | _______#3c1e52__________ |
+| Secondary Color (Hex) | _______#33283a__________ |
+| Primary Container (Hex) | ________#5b3c71_________ |
+| Surface (Hex) | ________#fff7fd_________ |
 
 > **คำถาม:** Primary, On Primary, Primary Container, On Primary Container คืออะไร มีลักษณะความสัมพันธ์ของสีอย่างไร?  วิเคราะห์และเติมตารางด้านล่าง
 
 | สี | หน้าที่ |
 |-----|--------|
-| Primary | _________________ |
-| On Primary | _________________ |
-| Primary Container | _________________ |
-| On Primary Container | _________________ |
+| Primary | _______สีหลักของแอป ใช้กับส่วนที่สำคัญที่สุด เช่น ปุ่มหลัก (Filled Button)__________ |
+| On Primary | _______สีข้อความหรือไอคอนที่วางอยู่บนสี Primary__________ |
+| Primary Container | ______สีพื้นหลังโทนอ่อนลงมา ใช้กับส่วนรอง เช่น การ์ด หรือกรอบไอคอน___________ |
+| On Primary Container | _______สีข้อความหรือไอคอนที่วางอยู่บนสี Primary Container__________ |
 
+คู่สีใช้งาน: Primary คู่กับ On Primary และ Primary Container คู่กับ On Primary Container
 ---
 
 ### การทดลองที่ 2: ออกแบบ UI Mockup ด้วย Figma (55 นาที)
